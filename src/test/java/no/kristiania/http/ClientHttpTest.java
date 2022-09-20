@@ -1,6 +1,6 @@
 package no.kristiania.http;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
@@ -20,4 +20,13 @@ public class ClientHttpTest {
         ClientHttp client = new ClientHttp("httpbin.org", 80, "/non-existing path");
         assertEquals(404, client.getStatus());
     }
+
+    @Test
+    public void ShouldReadGetHeader() throws IOException {
+        ClientHttp client = new ClientHttp("httpbin.org", 80, "/html");
+        assertEquals("text/html; charset=utf-8", client.getHeader("Content-Type"));
+        assertEquals("3741", client.getHeader("Content-Length"));
+        assertEquals("gunicorn/19.9.0", client.getHeader("Server"));
+    }
+
 }
