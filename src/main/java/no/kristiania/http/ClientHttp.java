@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ClientHttp {
     public static void main(String[] args) throws IOException {
@@ -11,7 +12,9 @@ public class ClientHttp {
     }
 
     private int statusCode;
-    private Map<String, String> headers = new HashMap<>();
+    private final Map<String, String> headers = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private int contentLength;
+    private String body;
 
     public ClientHttp(String host, int port, String requestTarget) throws IOException {
         Socket socket = new Socket(host, port);
@@ -31,6 +34,13 @@ public class ClientHttp {
             String[] parts = headerLine.split(":\\s*");
             headers.put(parts[0], parts[1]);
         }
+
+        contentLength = Integer.parseInt(getHeader("Content-Length"));
+        StringBuilder body = new StringBuilder();
+        for (int i = 0; i < contentLength; i++){
+            body.append((char)socket.getInputStream().read());
+        }
+        this.body = body.toString();
     }
 
     private String readLine(Socket socket) throws IOException {
@@ -51,5 +61,13 @@ public class ClientHttp {
 
     public String getHeader(String fieldName){
         return headers.get(fieldName);
+    }
+
+    public int getContentLength() {
+        return contentLength;
+    }
+
+    public String getBody() {
+        return body;
     }
 }
