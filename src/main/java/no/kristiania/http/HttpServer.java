@@ -2,6 +2,7 @@ package no.kristiania.http;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class HttpServer {
@@ -16,8 +17,7 @@ public class HttpServer {
         new Thread(() -> {
             try {
                 var clientSocket = serverSocket.accept();
-                clientSocket.getOutputStream().write(("HTTP/1.1 404 NOT FOUND\r\n" +
-                        "\r\n").getBytes(StandardCharsets.UTF_8));
+                handleClient(clientSocket);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -36,17 +36,21 @@ public class HttpServer {
         System.out.println(request.getStartLine());
         System.out.println(request.headers);
 
-         var body = "<html><h1>Hello World!</h1></html>";
-         var contentLength = body.getBytes().length;
-         clientSocket.getOutputStream().write(("HTTP/1.1 200 OK\r\n" +
-                 "Content-Type: text/html\r\n" +
-                 "Content-Length: " + contentLength + "\r\n" +
-                 "\r\n" +
-                 body).getBytes(StandardCharsets.UTF_8));
-
+        var body = "<html><h1>Hello World!</h1></html>";
+        var contentLength = body.getBytes().length;
+        clientSocket.getOutputStream().write(("HTTP/1.1 200 OK\r\n" +
+                "Content-Type: text/html\r\n" +
+                "Content-Length: " + contentLength + "\r\n" +
+                "\r\n" +
+                body).getBytes(StandardCharsets.UTF_8));
     }
 
-    public int getPort(){
+    private static void handleClient(Socket clientSocket) throws IOException {
+        clientSocket.getOutputStream().write(("HTTP/1.1 404 NOT FOUND\r\n" +
+                "\r\n").getBytes(StandardCharsets.UTF_8));
+    }
+
+    public int getPort() {
         return serverSocket.getLocalPort();
     }
 }
