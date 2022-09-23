@@ -32,21 +32,24 @@ public class HttpServer {
 
         var clientSocket = serverSocket.accept();
 
+        handleClient(clientSocket);
         var request = new HttpMessage(clientSocket);
         System.out.println(request.getStartLine());
         System.out.println(request.headers);
 
-        var body = "<html><h1>Hello World!</h1></html>";
-        var contentLength = body.getBytes().length;
-        clientSocket.getOutputStream().write(("HTTP/1.1 200 OK\r\n" +
-                "Content-Type: text/html\r\n" +
-                "Content-Length: " + contentLength + "\r\n" +
-                "\r\n" +
-                body).getBytes(StandardCharsets.UTF_8));
     }
 
     private static void handleClient(Socket clientSocket) throws IOException {
+        var request = new HttpMessage(clientSocket);
+        System.out.println(request.getStartLine());
+        var requestTarget = request.getStartLine().split(" ")[1];
+        var responseBody = "Unknown URL '" + requestTarget + "'";
+
         clientSocket.getOutputStream().write(("HTTP/1.1 404 NOT FOUND\r\n" +
+                "Content-Type: text/plain\r\n" +
+                "Content-Length: " + responseBody.length() + "\r\n" +
+                "\r\n" +
+                responseBody +
                 "\r\n").getBytes(StandardCharsets.UTF_8));
     }
 
