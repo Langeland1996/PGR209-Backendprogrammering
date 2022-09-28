@@ -11,7 +11,7 @@ public class LibraryServer {
 
     public void start() throws Exception {
         server.start();
-        logger.info("Starter servcer on {}", server.getURI());
+        logger.warn("Starter servcer on {}", server.getURI());
     }
 
     public static void main(String[] args) throws Exception {
