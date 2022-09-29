@@ -9,15 +9,17 @@ import org.slf4j.LoggerFactory;
 
 public class LibraryServer {
     private static final Logger logger = LoggerFactory.getLogger(LibraryServer.class);
-
     private final Server server = new Server(9080);
+    private BookRepository bookRepository = new BookRepository();
+
+
 
     public void start() throws Exception {
         var webApp = new WebAppContext(
                 Resource.newClassPathResource("/webapp"),
                 "/"
         );
-        webApp.addServlet(new ServletHolder(new AddBookServlet()), "/api/addBook");
+        webApp.addServlet(new ServletHolder(new AddBookServlet(bookRepository)), "/api/addBook");
         server.setHandler(webApp);
 
 
