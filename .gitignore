@@ -1,2 +1,5 @@
 /.idea/
 /target/
+/example-file.txt
+/src/main/java/no/kristiania/http/HttpMessage.java
+/src/main/java/no/kristiania/http/HttpServer.java

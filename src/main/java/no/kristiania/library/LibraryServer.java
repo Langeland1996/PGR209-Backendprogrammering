@@ -1,5 +1,6 @@
 package no.kristiania.library;
 
+import org.eclipse.jetty.jsp.JettyJspServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
@@ -21,6 +22,7 @@ public class LibraryServer {
         );
         webApp.addServlet(new ServletHolder(new AddBookServlet(bookRepository)), "/api/addBook");
         webApp.addServlet(new ServletHolder(new ListBooksServlet(bookRepository)), "/api/books/*");
+        webApp.addServlet(new ServletHolder(new JettyJspServlet()), "*.jsp");
         server.setHandler(webApp);
 
 
