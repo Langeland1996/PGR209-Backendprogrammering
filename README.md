@@ -11,3 +11,6 @@
 * [ ] Framework support with JAX-RS to build GET request 
   * (Jersey is a part of glassfish which implements JAX-RS)
 * [ ] Post requests with JAX-RS
+
+## Magiske besvergelser:
+1. 
