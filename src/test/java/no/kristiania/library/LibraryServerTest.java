@@ -1,9 +1,13 @@
 package no.kristiania.library;
 
+import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LibraryServerTest {
 
@@ -18,6 +22,6 @@ public class LibraryServerTest {
 
         assertThat(connection.getInputStream())
                 .asString(StandardCharsets.UTF_8)
-                .containts("<h1>Kristiania Library</h1>");
+                .contains("<h1>Kristiania Library</h1>");
     }
 }
