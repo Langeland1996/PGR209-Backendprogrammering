@@ -26,6 +26,14 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.25</version>
         </dependency>
+        <dependency>
+            <!-- Dependency for datasource ? -->
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.1.214</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 
