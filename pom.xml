@@ -24,7 +24,7 @@
             <!-- Dependency for postgreSQL -->
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.25</version>
+            <version>42.5.0</version>
         </dependency>
         <dependency>
             <!-- Dependency for datasource ? -->
