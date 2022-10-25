@@ -11,11 +11,9 @@ import java.util.Map;
 public class BookDao {
     private final DataSource dataSource;
 
-
-
     /**
      * DataSource is the definition of how we connect to the database
-     *  without it being the connection itself
+     * without it being the connection itself
      * url, database name, username, password,
      * @param dataSource
      */
@@ -30,11 +28,16 @@ public class BookDao {
                 statement.setString(1, book.getTitle());
                 statement.setString(2, book.getAuthor());
                 statement.executeUpdate();
-
                 //
                 try (var generatedKeys = statement.getGeneratedKeys()) {
                     generatedKeys.next();
                     book.setId(generatedKeys.getLong("id"));
+
+                    System.out.println("Book added to table");
+                    System.out.println("Id: "+book.getId());
+                    System.out.println("Title: "+book.getTitle());
+                    System.out.println("Author: "+book.getAuthor());
+
                 }
             }
         }
@@ -42,7 +45,8 @@ public class BookDao {
 
     public Book retrive(Long id) throws SQLException {
         try (var connection = dataSource.getConnection()) {
-            try (var statement = connection.prepareStatement("select * from books where id = ?")) {
+            var sqlQuery = "select * from books where id = ?";
+            try (var statement = connection.prepareStatement(sqlQuery)) {
                 statement.setLong(1, id);
                 try (var rs = statement.executeQuery()){
                     rs.next();

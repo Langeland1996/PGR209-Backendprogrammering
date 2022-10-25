@@ -1,5 +1,6 @@
 package no.kristiania;
 
+import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,13 +23,8 @@ public class BookDaoTest {
         //4. Name of database: testdatabase
         //5. Wait til the program is done to close the DB: DB_CLOSE_DELAY=-1
         dataSource.setURL("jdbc:h2:mem:testdatabase;DB_CLOSE_DELAY=-1");
-        try (var connection = dataSource.getConnection()) {
-            var statement = connection.createStatement();
-            var sql = "create table books(id serial primary key, title varchar(100), author varchar(100))";
-            statement.executeUpdate(sql);
-
-        }
-
+        //
+        Flyway.configure().dataSource(dataSource).load().migrate();
         dao = new BookDao(dataSource);
     }
 

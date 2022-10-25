@@ -15,9 +15,9 @@ public class SampleBook {
 
     public void pickOne(String property, String... alternatives){
         if (property.equals("title")){
-            book.setTitle(alternatives[(int) Math.floor(Math.random() + alternatives.length - 1)]);
+            book.setTitle(alternatives[(int) Math.floor(Math.random() * alternatives.length)]);
         } else if (property.equals("author")){
-            book.setAuthor(alternatives[(int) Math.floor(Math.random() + alternatives.length - 1)]);
+            book.setAuthor(alternatives[(int) Math.floor(Math.random() * alternatives.length)]);
         } else {
             System.out.println("Input invalid, try \"title\" | \"author\".");
         }
