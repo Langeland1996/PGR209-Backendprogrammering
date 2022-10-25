@@ -35,3 +35,10 @@
 /.idea/libraries/Maven__com_h2database_h2_2_1_214.xml
 /.idea/libraries/Maven__org_postgresql_postgresql_42_5_0.xml
 /target/classes/no/kristiania/SampleBook.class
+/target/classes/no/kristiania/Demo.class
+/.idea/libraries/Maven__com_electronwill_night_config_core_3_6_6.xml
+/.idea/libraries/Maven__com_electronwill_night_config_toml_3_6_6.xml
+/.idea/libraries/Maven__org_flywaydb_flyway_core_9_4_0.xml
+/.idea/libraries/Maven__org_logevents_logevents_0_4_1.xml
+/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_0_alpha5.xml
+/target/classes/db/migration/V001__Create_table_books.sql
