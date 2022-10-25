@@ -1,0 +1,14 @@
+/target/classes/no/kristiania/Book.class
+/target/classes/no/kristiania/BookDao.class
+/target/test-classes/no/kristiania/BookDaoTest.class
+/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+/target/classes/no/kristiania/Demo.class
+/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+/target/library-server-1.0-SNAPSHOT.jar
+/target/surefire-reports/no.kristiania.library.LibraryServerTest.txt
+/target/maven-archiver/pom.properties
+/target/classes/no/kristiania/SampleBook.class
+/target/surefire-reports/TEST-no.kristiania.library.LibraryServerTest.xml
+/target/classes/db/migration/V001__Create_table_books.sql
